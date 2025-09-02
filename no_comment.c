@@ -6,13 +6,13 @@
 
 void filenameSplit(const char *fullname, char *filename, char *extension) {
     const char *last_dot = strrchr(fullname, '.');
-    if (last_dot != NULL && last_dot != fullname) { // A dot was found, and it's not the first character
+    if (last_dot != NULL && last_dot != fullname) { // a dot was found, and it's not the first character
         strncpy(filename, fullname, last_dot - fullname);
-        filename[last_dot - fullname] = '\0'; // Null-terminate the filename
+        filename[last_dot - fullname] = '\0'; // null-terminate the filename
         strcpy(extension, last_dot);
-    } else { // No dot found, or it's a hidden file with no name
+    } else { // no dot found, or .file
         strcpy(filename, fullname);
-        extension[0] = '\0'; // Set extension to empty string
+        extension[0] = '\0'; // set extension to empty string
     }
 }
 
@@ -46,16 +46,13 @@ int main() {
     // edit
     char lineData[MAX_LINE_LENGTH];
     char *slashPosition;
-    while (fgets(lineData, sizeof(lineData), fileInput) != NULL) { // read file
-        slashPosition = strstr(lineData, "//"); // find " //"" in line
+    while (fgets(lineData, sizeof(lineData), fileInput) != NULL) { // read file by lines
+        slashPosition = strstr(lineData, "//"); // find first "//"" in line
         if (slashPosition != NULL) {
             *slashPosition = '\n'; // replace >/</ with newline
             *(slashPosition + 1) = '\0'; // replace />/< with null
-            printf("%s", lineData);
-            fprintf(fileOutput, "%s", lineData); // write to file (modified)
-        } else{
-            fprintf(fileOutput, "%s", lineData); // write to file (original)
-        }
+        } 
+        fprintf(fileOutput, "%s", lineData); // write to file
     }
 
     // close files
