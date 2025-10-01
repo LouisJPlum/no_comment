@@ -1,7 +1,7 @@
 # No Comment
 still writing comments?  
 sure it will make your code more understanable, but so do others.  
-so this came out. (just a kidding ;~))  
+so this came out. 
   
 remove all comments like "// comment \n"  
 `no_comment.c` wont't work for /* comment */  
